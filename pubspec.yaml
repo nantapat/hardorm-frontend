@@ -28,6 +28,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
+  flutter_multiselect: ^0.0.1
 
 dev_dependencies:
   flutter_test:
@@ -56,7 +57,12 @@ flutter:
     - icon/facebook_logo.png
     - assets/3.png
     - assets/person.png
-
+    - picHor/matt-reames-aFk1RLZgJTs-unsplash.jpg
+    - picHor/Hor1.jpg
+    - picHor/Hor2.jpg
+    - picHor/Hor3.jpg
+    - picHor/Hor4.jpg
+    - picHor/Hor5.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -85,6 +91,10 @@ flutter:
       - family: Poppins
         fonts:
           - asset: fonts/Poppins-Regular.ttf
+
+      - family:   IconHardorm
+        fonts:
+          - asset: icon/IconHardorm.ttf
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
