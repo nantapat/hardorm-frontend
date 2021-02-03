@@ -1,4 +1,4 @@
-name: hardorm
+name: HarDorm
 description: A new Flutter application.
 
 # The following line prevents the package from being accidentally published to
@@ -29,11 +29,27 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
   flutter_multiselect: ^0.0.1
+  carousel_slider: ^1.3.0
+  expandable_text: ^0.1.0
+  google_maps_flutter: ^0.5.24+1
+  flutter_launcher_icons: ^0.7.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+
+
+flutter_launcher_icons:
+    path: ../
+
+flutter_icons:
+  image_path_android: "assets/logo/app_icon1.png"
+  image_path_ios: "assets/logo/app_icon1.png"
+  android: true
+  ios: true
+  adaptive_icon_background: "assets/logo/app_icon1.png"
+  adaptive_icon_foreground: "assets/logo/app_icon1.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -63,6 +79,13 @@ flutter:
     - picHor/Hor3.jpg
     - picHor/Hor4.jpg
     - picHor/Hor5.jpg
+    - room/room1.jpg
+    - room/room2.jpg
+    - room/room3.jpg
+    - room/room4.jpg
+    - room/room5.jpg
+    - room/room6.jpg
+    - room/room7.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

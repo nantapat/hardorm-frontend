@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hardorm/app/sign_in/thirdParty_button.dart';
-import 'package:hardorm/pages/login_detail.dart';
+import 'package:HarDorm/app/sign_in/thirdParty_button.dart';
+import 'package:HarDorm/pages/login_detail.dart';
 
 class ThirdPartyLogin extends StatefulWidget{
   @override
@@ -24,7 +24,7 @@ class ThirdPartyLogin extends StatefulWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(  
         body: _buildContent(context),
     );
   }

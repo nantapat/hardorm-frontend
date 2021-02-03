@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hardorm/pages/scan_dorm.dart';
+import 'package:HarDorm/pages/scan_dorm.dart';
 
 class LoginDetail extends StatefulWidget {
   @override
@@ -7,13 +7,13 @@ class LoginDetail extends StatefulWidget {
 }
 
 class _LoginDetailState extends State<LoginDetail> {
-
-
-void _submit(BuildContext context) {
+  void _submit(BuildContext context) {
     Navigator.pushAndRemoveUntil(
-        context, MaterialPageRoute(builder: (context) => SelectDorm()),(
-          Route < dynamic > route) => false,);
-  }  
+      context,
+      MaterialPageRoute(builder: (context) => SelectDorm()),
+      (Route<dynamic> route) => false,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -176,13 +176,17 @@ void _submit(BuildContext context) {
                       ],
                     ),
                   ),
-                  SizedBox(height: 50.0,),
+                  SizedBox(
+                    height: 50.0,
+                  ),
                   Image.asset(
                     'assets/3.png',
                     alignment: Alignment.bottomLeft,
                     height: 70,
                   ),
-                  SizedBox(height: 10.0,),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                 ],
               ),
             ),
@@ -203,7 +207,7 @@ class RadioGroupWidget extends State {
   String radioButtonItem = 'Yes';
 
   // Group Value for Radio Button.
-  int id = 1;
+  int id = 2;
 
   Widget build(BuildContext context) {
     return Container(
@@ -211,7 +215,7 @@ class RadioGroupWidget extends State {
         child: Column(
           children: <Widget>[
             Row(
-              children: <Widget>[
+              children: [
                 Radio(
                   activeColor: Colors.white,
                   value: 1,
@@ -244,6 +248,23 @@ class RadioGroupWidget extends State {
                 ),
               ],
             ),
+            if (id == 1)
+             Container(
+                height: 150,
+
+                padding: EdgeInsets.only(left: 15, right: 40),
+                child: TextField(
+                  maxLines: 3,
+                  textAlignVertical: TextAlignVertical.top,
+                  decoration: InputDecoration(
+                      hintStyle: new TextStyle(color: Colors.grey[800]),
+                      hintText: 'Introduce Yourself',
+                      border: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(15.0))),
+                      fillColor: Colors.white,
+                      filled: true),
+                )),
           ],
         ));
   }

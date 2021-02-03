@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hardorm/my_flutter_app_icons.dart';
+import 'package:HarDorm/icon_hardorm_icons.dart';
+
 
 class BottomBar extends StatefulWidget {
   @override
@@ -25,34 +26,32 @@ class _BottomBarState extends State<BottomBar> {
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(IconHardorm.home,
-              color: Colors.indigo),
+            icon: Icon(
+              IconHardorm.home,
+              // color: Colors.blue
+            ),
             title: Text("Home"),
-            
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              IconHardorm.booking,
-              color: Colors.indigo,
+              IconHardorm.worldwide,
+              // color: Colors.indigo,
             ),
-            title: Text("Bookings"),
-            
+            title: Text("Notification"),
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              IconHardorm.search_people,
-              color: Colors.indigo,
+              IconHardorm.chat,
+              // color: Colors.indigo,
             ),
-            title: Text("Roommate"),
-            
+            title: Text("Messages"),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               IconHardorm.user,
-              color: Colors.indigo,
+              // color: Colors.indigo,
             ),
             title: Text("Profile"),
-            
           ),
         ],
       ),

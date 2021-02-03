@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hardorm/pages/third_party_login.dart';
+import 'package:HarDorm/pages/third_party_login.dart';
 
 class LandingPage extends StatelessWidget {
 

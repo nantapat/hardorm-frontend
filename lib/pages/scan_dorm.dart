@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hardorm/common_widgets/dropdown.dart';
-import 'package:hardorm/common_widgets/faci.dart';
-import 'package:hardorm/my_flutter_app_icons.dart';
-import 'package:hardorm/pages/home.dart';
+import 'package:HarDorm/common_widgets/checkbox.dart';
+import 'package:HarDorm/common_widgets/dropdown.dart';
+// import 'package:hardorm/common_widgets/faci.dart';
+import 'package:HarDorm/pages/home.dart';
+import 'package:HarDorm/icon_hardorm_icons.dart';
 
 class SelectDorm extends StatefulWidget {
   @override
@@ -11,9 +12,18 @@ class SelectDorm extends StatefulWidget {
 
 class _SelectDormState extends State<SelectDorm> {
   final _formKey = GlobalKey<FormState>();
+  RangeValues values = RangeValues(500.0, 5000.0);
+  RangeLabels labels = RangeLabels('500', '5000');
+  int currentTabIndex = 0;
+  onTapped(int index) {
+    setState(() {
+      currentTabIndex = index;
+    });
+  }
 
   void _home(BuildContext context) {
-    Navigator.push(context,new MaterialPageRoute(builder: (context) => Home()));
+    Navigator.push(
+        context, new MaterialPageRoute(builder: (context) => Home()));
   }
 
   @override
@@ -27,20 +37,20 @@ class _SelectDormState extends State<SelectDorm> {
         ),
         actions: [
           Icon(
-            IconHardorm.noti1,
+            IconHardorm.notification,
             size: 20.0,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Icon(
-              IconHardorm.chat,
+              IconHardorm.chatcircle,
               size: 20.0,
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
             child: Icon(
-              IconHardorm.more_horiz,
+              IconHardorm.more,
               size: 20.0,
             ),
           ),
@@ -107,74 +117,54 @@ class _SelectDormState extends State<SelectDorm> {
                         SizedBox(
                           height: 10.0,
                         ),
-                        new Container(child: RadioGroup1()),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          'Fee range',
-                          style: TextStyle(fontSize: 16.0, color: Colors.black),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          'Acceptable electricity cost per unit',
-                          style: TextStyle(fontSize: 16.0, color: Colors.black),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        new Container(
-                          height: 40.0,
-                          padding: EdgeInsets.only(right: 20),
-                          child: TextField(
-                            textAlignVertical: TextAlignVertical.top,
-                            decoration: InputDecoration(
-                                prefixIcon: Icon(
-                                  IconHardorm.elec1,
-                                  size: 20.0,
-                                  color: Colors.black,
-                                ),
-                                hintStyle:
-                                    new TextStyle(color: Colors.grey[800]),
-                                border: OutlineInputBorder(
-                                    borderRadius: const BorderRadius.all(
-                                        const Radius.circular(5.0))),
-                                fillColor: Colors.white,
-                                filled: true),
+                        Container(
+                          padding: EdgeInsets.only(right: 20.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                'Price',
+                                style: TextStyle(
+                                    fontSize: 16.0, color: Colors.black),
+                              ),
+                              Text(
+                                '฿500 - 5,000',
+                                style: TextStyle(
+                                    fontSize: 16.0, color: Colors.black),
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(
                           height: 10.0,
                         ),
-                        Text(
-                          'Acceptable water cost per unit',
-                          style: TextStyle(fontSize: 16.0, color: Colors.black),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
                         new Container(
-                          height: 40.0,
-                          padding: EdgeInsets.only(right: 20),
-                          child: TextField(
-                            textAlignVertical: TextAlignVertical.top,
-                            decoration: InputDecoration(
-                                prefixIcon: Icon(
-                                  IconHardorm.water_drops,
-                                  size: 20.0,
-                                  color: Colors.black,
-                                ),
-                                hintStyle:
-                                    new TextStyle(color: Colors.grey[800]),
-                                border: OutlineInputBorder(
-                                    borderRadius: const BorderRadius.all(
-                                        const Radius.circular(5.0))),
-                                fillColor: Colors.white,
-                                filled: true),
+                          padding: EdgeInsets.only(left: 0, right: 20),
+                          child: RangeSlider(
+                            activeColor: Colors.white,
+                            inactiveColor: Colors.indigo,
+                            min: 500.0,
+                            max: 5000.0,
+                            values: values,
+                            labels: labels,
+                            divisions: 5,
+                            onChanged: (value) {
+                              print('START: ${value.start}, END:${value.end}');
+                              setState(
+                                () {
+                                  values = value;
+                                  labels = RangeLabels(
+                                    '${value.start.toInt().toString()}\฿',
+                                    '${value.end.toInt().toString()}\฿',
+                                  );
+                                },
+                              );
+                            },
                           ),
                         ),
+                        new Container(
+                            padding: EdgeInsets.only(right: 0),
+                            child: RadioGroup1()),
                         SizedBox(
                           height: 10.0,
                         ),
@@ -185,7 +175,15 @@ class _SelectDormState extends State<SelectDorm> {
                         SizedBox(
                           height: 10.0,
                         ),
-                        CheckboxOnchangedListener(),
+                        Container(
+                          padding: EdgeInsets.only(right: 20),
+                          color: Colors.blue[300],
+                          // width: 30,
+                          height: 300,
+                          child: CheckFacilities(),
+                        ),
+                        
+                        // CheckboxOnchangedListener(),
                         Container(
                           padding: const EdgeInsets.only(
                               left: 25.0, right: 40.0, top: 80.0, bottom: 40.0),
@@ -223,17 +221,41 @@ class _SelectDormState extends State<SelectDorm> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(icon: Icon(IconHardorm.home,color: Colors.indigo,), onPressed: () {}),
-            // Spacer(),
-            IconButton(icon: Icon(IconHardorm.booking,color: Colors.indigo,), onPressed: () {}),
-            IconButton(icon: Icon(IconHardorm.search_people,color: Colors.indigo,), onPressed: () {}),
-            IconButton(icon: Icon(IconHardorm.user,color: Colors.indigo,), onPressed: () {}),            
-          ],
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.grey[300],
+        onTap: onTapped,
+        currentIndex: currentTabIndex,
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              IconHardorm.home,
+              // color: Colors.blue
+            ),
+            title: Text("Home"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              IconHardorm.worldwide,
+              // color: Colors.indigo,
+            ),
+            title: Text("Notification"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              IconHardorm.chat,
+              // color: Colors.indigo,
+            ),
+            title: Text("Messages"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              IconHardorm.user,
+              // color: Colors.indigo,
+            ),
+            title: Text("Profile"),
+          ),
+        ],
       ),
     );
   }
@@ -246,7 +268,7 @@ class RadioGroup1 extends StatefulWidget {
 
 class RadioGroupWidget extends State {
   // Default Radio Button Selected Item When App Starts.
-  String radioButtonItem = 'Yes';
+  String radioButtonItem = 'Daily';
 
   // Group Value for Radio Button.
   int id = 1;
@@ -256,6 +278,7 @@ class RadioGroupWidget extends State {
         child: Column(
       children: <Widget>[
         Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Radio(
               activeColor: Colors.white,
@@ -263,7 +286,7 @@ class RadioGroupWidget extends State {
               groupValue: id,
               onChanged: (val) {
                 setState(() {
-                  radioButtonItem = 'Yes';
+                  radioButtonItem = 'Daily';
                   id = 1;
                 });
               },
@@ -278,7 +301,7 @@ class RadioGroupWidget extends State {
               groupValue: id,
               onChanged: (val) {
                 setState(() {
-                  radioButtonItem = 'No';
+                  radioButtonItem = 'Monthly';
                   id = 2;
                 });
               },
@@ -289,6 +312,136 @@ class RadioGroupWidget extends State {
             ),
           ],
         ),
+        if (id == 1)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                child: Text(
+                  'Acceptable electricity cost per unit',
+                  style: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+              new Container(
+                height: 40.0,
+                padding: EdgeInsets.only(right: 20),
+                child: TextField(
+                  enabled: false,
+                  textAlignVertical: TextAlignVertical.top,
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        IconHardorm.electric,
+                        size: 20.0,
+                        color: Colors.black,
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(5.0))),
+                      fillColor: Colors.grey,
+                      filled: true),
+                ),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Container(
+                child: Text(
+                  'Acceptable water cost per unit',
+                  style: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+              new Container(
+                height: 40.0,
+                padding: EdgeInsets.only(right: 20),
+                child: TextField(
+                  textAlignVertical: TextAlignVertical.top,
+                  decoration: InputDecoration(
+                      enabled: false,
+                      prefixIcon: Icon(
+                        IconHardorm.water_drops,
+                        size: 20.0,
+                        color: Colors.black,
+                      ),
+                      hintStyle: new TextStyle(color: Colors.grey[800]),
+                      border: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(5.0))),
+                      fillColor: Colors.grey,
+                      filled: true),
+                ),
+              ),
+            ],
+          ),
+        if (id == 2)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                child: Text(
+                  'Acceptable electricity cost per unit',
+                  style: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+              new Container(
+                height: 40.0,
+                padding: EdgeInsets.only(right: 20),
+                child: TextField(
+                  textAlignVertical: TextAlignVertical.top,
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        IconHardorm.electric,
+                        size: 20.0,
+                        color: Colors.black,
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(5.0))),
+                      fillColor: Colors.white,
+                      filled: true),
+                ),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Container(
+                child: Text(
+                  'Acceptable water cost per unit',
+                  style: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+              new Container(
+                height: 40.0,
+                padding: EdgeInsets.only(right: 20),
+                child: TextField(
+                  textAlignVertical: TextAlignVertical.top,
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        IconHardorm.water_drops,
+                        size: 20.0,
+                        color: Colors.black,
+                      ),
+                      hintStyle: new TextStyle(color: Colors.grey[800]),
+                      border: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(5.0))),
+                      fillColor: Colors.white,
+                      filled: true),
+                ),
+              ),
+            ],
+          ),
       ],
     ));
   }
