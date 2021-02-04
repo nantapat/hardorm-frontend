@@ -1,8 +1,10 @@
+import 'package:HarDorm/common_widgets/rating_star.dart';
 import 'package:flutter/material.dart';
 import 'package:HarDorm/common_widgets/Slide_pic2.dart';
 import 'package:HarDorm/common_widgets/expand_text.dart';
 import 'package:HarDorm/icon_hardorm_icons.dart';
 import 'package:HarDorm/common_widgets/map.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ShowHor extends StatefulWidget {
   ShowHor({Key key, this.title}) : super(key: key);
@@ -15,6 +17,7 @@ class ShowHor extends StatefulWidget {
 
 class _ShowHorState extends State<ShowHor> {
   int currentTabIndex = 0;
+  double _rating;
 
   onTapped(int index) {
     setState(() {
@@ -251,7 +254,8 @@ class _ShowHorState extends State<ShowHor> {
                                                   height: 5,
                                                   minWidth: 5,
                                                   child: RaisedButton(
-                                                    onPressed: () => _mapHarDorm(context),
+                                                    onPressed: () =>
+                                                        _mapHarDorm(context),
                                                     color: Colors.white,
                                                     child: Text(
                                                       'View map',
@@ -340,8 +344,7 @@ class _ShowHorState extends State<ShowHor> {
                                         new Positioned(
                                           top: 120.0,
                                           left: 3.0,
-                                          child:
-                                               RadioGroup2(),
+                                          child: RadioGroup2(),
                                         ),
                                       ],
                                     ),
@@ -538,14 +541,15 @@ class _ShowHorState extends State<ShowHor> {
                               ),
                               SizedBox(height: 20.0),
                               Container(
-                                padding: EdgeInsets.only(left:20.0, right:20.0),
+                                padding:
+                                    EdgeInsets.only(left: 20.0, right: 20.0),
                                 height: 400.0,
                                 // color: Colors.amber,
                                 child: GoogleMapHardorm(),
                               ),
                               SizedBox(height: 20.0),
                               Container(
-                                padding: EdgeInsets.only(left:20,right:20.0),
+                                padding: EdgeInsets.only(left: 20, right: 20.0),
                                 child: RaisedButton(
                                   padding: const EdgeInsets.all(13.0),
                                   onPressed: () => _mapHarDorm(context),
@@ -566,6 +570,78 @@ class _ShowHorState extends State<ShowHor> {
                                 ),
                               ),
                               SizedBox(height: 20.0),
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(left: 20.0, right: 20.0),
+                                child: Text(
+                                  'Reviews and rating',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 20.0),
+                                ),
+                              ),
+                              SizedBox(height: 20.0),
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(left: 20.0, right: 20.0),
+                                child: Text(
+                                  'Overall rating',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 15.0),
+                                ),
+                              ),
+                              Row(children: <Widget>[
+                                RatingBar.builder(
+                                  initialRating: 1,
+                                  minRating: 1,
+                                  direction: Axis.horizontal,
+                                  allowHalfRating: true,
+                                  itemCount: 5,
+                                  itemSize: 50,
+                                  unratedColor: Colors.amber.withAlpha(50),
+                                  itemPadding:
+                                      EdgeInsets.symmetric(horizontal: 4.0),
+                                  itemBuilder: (context, _) => Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                  ),
+                                  onRatingUpdate: (rating) {
+                                    print(rating);
+                                    setState(() {
+                                      _rating = rating;
+                                    });
+                                  },
+                                ),
+                                SizedBox(height: 40.0),
+                                if (_rating != null)
+                                  Text(
+                                    'Rating : $_rating',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 15.0),
+                                  ),
+                              ]),
+                              Container(
+                                color: Colors.grey[200],
+                                child: RatingStar(
+                                  barBackgroundColor: Color(0xFFFBEAFF),
+                                  barTintColor: Color(0xFF9378FF),
+                                  headerText: "Rating",
+                                  headerTextColor: Colors.black,
+                                  indexingColor: Colors.black,
+                                  starFiveValue: 30,
+                                  starFourValue: 60,
+                                  starRating: "5.0",
+                                  starRatingTextColor: Colors.black,
+                                  starThreeValue: 90,
+                                  startOneValue: 10,
+                                  starTwoValue: 100,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -633,44 +709,41 @@ class RadioGroupWidget extends State {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(0.0),
-      
       child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Radio(
-                  activeColor: Colors.white,
-                  value: 1,
-                  groupValue: id,
-                  onChanged: (val) {
-                    setState(() {
-                      radioButtonItem = 'Daily';
-                      id = 1;
-                    });
-                  },
-                ),
-                Text(
-                  'Daily',
-                  style: new TextStyle(fontSize: 11.0, color: Colors.white),
-                ),
-                Radio(
-                  activeColor: Colors.white,
-                  value: 2,
-                  groupValue: id,
-                  onChanged: (val) {
-                    setState(() {
-                      radioButtonItem = 'Monthly';
-                      id = 2;
-                    });
-                  },
-                ),
-                Text(
-                  'Monthly',
-                  style: new TextStyle(fontSize: 11.0, color: Colors.white),
-                ),
-              ],
-            
-        
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Radio(
+            activeColor: Colors.white,
+            value: 1,
+            groupValue: id,
+            onChanged: (val) {
+              setState(() {
+                radioButtonItem = 'Daily';
+                id = 1;
+              });
+            },
+          ),
+          Text(
+            'Daily',
+            style: new TextStyle(fontSize: 11.0, color: Colors.white),
+          ),
+          Radio(
+            activeColor: Colors.white,
+            value: 2,
+            groupValue: id,
+            onChanged: (val) {
+              setState(() {
+                radioButtonItem = 'Monthly';
+                id = 2;
+              });
+            },
+          ),
+          Text(
+            'Monthly',
+            style: new TextStyle(fontSize: 11.0, color: Colors.white),
+          ),
+        ],
       ),
     );
   }
