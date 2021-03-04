@@ -8,13 +8,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int currentTabIndex = 0;
-  onTapped(int index) {
-    setState(() {
-      currentTabIndex = index;
-    });
-  }
-
   List nameHor = [
     "Teddy@Thammasat",
     "Bear@Thammasat",
@@ -38,7 +31,7 @@ class _HomeState extends State<Home> {
     "฿3,500-5,000/month",
   ];
 
-  var rank =[
+  var rank = [
     "Excellent",
     "Good",
     "Excellent",
@@ -46,13 +39,12 @@ class _HomeState extends State<Home> {
     "Excellent",
   ];
 
-  var reviews =[
+  var reviews = [
     "50 verifield reviews",
     "102 verifield reviews",
     "150 verifield reviews",
     "50 verifield reviews",
     "96 verifield reviews",
-    
   ];
 
   var location = [
@@ -72,7 +64,6 @@ class _HomeState extends State<Home> {
     "picHor/Hor4.jpg",
     "picHor/Hor5.jpg",
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -109,191 +100,149 @@ class _HomeState extends State<Home> {
         shrinkWrap: true,
         itemBuilder: (BuildContext context, int index) => GestureDetector(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => ShowHor(),
-            ));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => ShowHor()));
           },
           child: Container(
             width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.all(25.0),
-            child: Card(
-              elevation: 3.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Container(
-                          height: 150.0,
-                          child: FittedBox(
-                            child: Image.asset(imageList[index]),
-                            fit: BoxFit.fill,
+            child: Expanded(
+              child: Card(
+                elevation: 3.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Container(
+                            height: 150.0,
+                            child: FittedBox(
+                              child: Image.asset(imageList[index]),
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10.0, right: 10.0, top: 10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                nameHor[index],
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 16.0),
-                              ),
-                              
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Row(
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10.0, right: 10.0, top: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  nameHor[index],
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 16.0),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          IconHardorm.pin,
+                                          size: 15.0,
+                                        ),
+                                        SizedBox(width: 2.0),
+                                        Text(
+                                          location[index],
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 12.0),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 5.0),
+                                    Text(
+                                      pricePerday[index],
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 12.0),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10.0, right: 10.0, bottom: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(
+                                  IconHardorm.review,
+                                  size: 25.0,
+                                ),
+                                Text(
+                                  rate[index],
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0),
+                                ),
+                                SizedBox(width: 5.0),
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Icon(
-                                        IconHardorm.pin,
-                                        size: 15.0,
-                                      ),
-                                      SizedBox(width: 2.0),
                                       Text(
-                                        location[index],
+                                        rank[index],
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 12.0),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 8.0),
+                                      ),
+                                      Text(
+                                        reviews[index],
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 8.0),
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 5.0),
-                                  Text(
-                                    pricePerday[index],
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 12.0),
-                                  ),
-                              //     Text(
-                              //     pricePermonth[index],
-                              //     style: TextStyle(
-                              //         color: Colors.black,
-                              //         fontWeight: FontWeight.w300,
-                              //         fontSize: 12.0),
-                              // ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                              Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10.0, right: 10.0, bottom: 10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                IconHardorm.review,
-                                size: 25.0,
-                              ),
-                              // SizedBox(width:0.0),
-                              Text(
-                                rate[index],
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18.0),
-                              ),
-                              // SizedBox(width:0.0),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    rank[index],
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 8.0),
-                                  ),
-                                  Text(
-                                    reviews[index], 
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 8.0),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(width:20.0),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 0.0),
+                                ),
+                                SizedBox(width: 20.0),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 0.0),
+                                  child: Expanded(
                                     child: Text(
                                       pricePermonth[index],
-                                      // textAlign: TextAlign.end,
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.w300,
                                           fontSize: 12.0),
                                     ),
                                   ),
-                             
-                                                     
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.grey[300],
-        onTap: onTapped,
-        currentIndex: currentTabIndex,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              IconHardorm.home,
-              // color: Colors.blue
-            ),
-            title: Text("Home"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              IconHardorm.worldwide,
-              // color: Colors.indigo,
-            ),
-            title: Text("Notification"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              IconHardorm.chat,
-              // color: Colors.indigo,
-            ),
-            title: Text("Messages"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              IconHardorm.user,
-              // color: Colors.indigo,
-            ),
-            title: Text("Profile"),
-          ),
-        ],
       ),
     );
   }

@@ -34,6 +34,16 @@ dependencies:
   google_maps_flutter: ^0.5.24+1
   flutter_launcher_icons: ^0.7.5
   flutter_rating_bar: ^3.2.0+1
+  provider: ^4.3.3
+  http: ^0.12.2
+  date_range_picker: ^1.0.3
+  intl: 0.15.7
+  flutter_tindercard: ^0.2.0
+  line_icons: ^1.3.2
+  # flutter_svg: ^0.19.3
+  flutter_custom_clippers: ^1.1.2
+
+
 
 
 dev_dependencies:
@@ -88,6 +98,37 @@ flutter:
     - room/room5.jpg
     - room/room6.jpg
     - room/room7.jpg
+    - assets/Avatar/chun1.jpg
+    - assets/components/Line.png
+    - assets/Avatar/battle.jpg
+    - assets/Avatar/changge.jpg
+    - assets/Avatar/jim.jpg
+    - assets/Avatar/john.jpg
+    - assets/Avatar/liaruge.jpg
+    - assets/Avatar/linglingqi.jpg
+    - assets/Avatar/paul.jpg
+    - assets/Avatar/ten.jpg
+    - assets/Avatar/tommy.jpg
+    - assets/Avatar/farmer.jpg
+    - assets/Avatar/hbd.jpg
+    - assets/Avatar/maple.jpg
+    - assets/Avatar/tree.jpg
+    - assets/Avatar/mountain.jpg
+    - assets/components/information.png
+    - assets/components/telephone.png
+    - assets/components/underline.png
+    - assets/components/topProfile1.png
+    - assets/components/success.png
+    - assets/components/friends.png
+    - assets/components/friends_active.png
+    - assets/components/heartLike.png
+    - assets/components/heartLikeActive.png
+    - assets/components/close.png
+    - assets/components/heart.png
+    - assets/components/refresh.png
+    
+    
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

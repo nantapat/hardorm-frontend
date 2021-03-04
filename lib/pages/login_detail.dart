@@ -1,5 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:HarDorm/pages/homeSystem.dart';
 import 'package:HarDorm/pages/scan_dorm.dart';
+import 'package:HarDorm/pages/searchDorm.dart';
+import 'package:flutter/material.dart';
+// import 'package:http/http.dart' as http;
+// import 'dart:convert';
 
 class LoginDetail extends StatefulWidget {
   @override
@@ -7,13 +11,30 @@ class LoginDetail extends StatefulWidget {
 }
 
 class _LoginDetailState extends State<LoginDetail> {
-  void _submit(BuildContext context) {
+  // String name = "";
+  // String lastName = "";
+  // String phoneNum = "";
+  // String final_response = "";
+  // final _formkey = GlobalKey<FormState>();
+  // Future<void> _savingData() async {
+  //   final validation = _formkey.currentState.validate();
+
+  //   if (!validation) {
+  //     return;
+  //   }
+
+  //   _formkey.currentState.save();
+  // }
+
+  void _submit(BuildContext context) async {
+    print('change page');
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => SelectDorm()),
+      MaterialPageRoute(builder: (context) => HomeSystem()),
       (Route<dynamic> route) => false,
     );
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -67,15 +88,21 @@ class _LoginDetailState extends State<LoginDetail> {
                   new Container(
                       height: 45,
                       padding: EdgeInsets.only(left: 40, right: 40),
-                      child: TextField(
-                        textAlignVertical: TextAlignVertical.top,
-                        decoration: InputDecoration(
-                            hintStyle: new TextStyle(color: Colors.grey[800]),
-                            border: OutlineInputBorder(
-                                borderRadius: const BorderRadius.all(
-                                    const Radius.circular(25.0))),
-                            fillColor: Colors.white,
-                            filled: true),
+                      child: Form(
+                      //  key: _formkey,
+                        child: TextFormField(
+                          textAlignVertical: TextAlignVertical.top,
+                          decoration: InputDecoration(
+                              hintStyle: new TextStyle(color: Colors.grey[800]),
+                              border: OutlineInputBorder(
+                                  borderRadius: const BorderRadius.all(
+                                      const Radius.circular(25.0))),
+                              fillColor: Colors.white,
+                              filled: true),
+                          // onSaved: (value) {
+                          //   name = value;
+                          // },
+                        ),
                       )),
                   new Container(
                       padding: EdgeInsets.only(left: 40, top: 20),
@@ -95,15 +122,22 @@ class _LoginDetailState extends State<LoginDetail> {
                       padding: EdgeInsets.only(left: 40, right: 40),
                       child: Column(children: <Widget>[
                         Expanded(
-                            child: TextField(
-                          textAlignVertical: TextAlignVertical.top,
-                          decoration: InputDecoration(
-                              hintStyle: new TextStyle(color: Colors.grey[800]),
-                              border: OutlineInputBorder(
-                                  borderRadius: const BorderRadius.all(
-                                      const Radius.circular(25.0))),
-                              fillColor: Colors.white,
-                              filled: true),
+                            child: Form(
+                              // key: _formkey,
+                          child: TextFormField(
+                            textAlignVertical: TextAlignVertical.top,
+                            decoration: InputDecoration(
+                                hintStyle:
+                                    new TextStyle(color: Colors.grey[800]),
+                                border: OutlineInputBorder(
+                                    borderRadius: const BorderRadius.all(
+                                        const Radius.circular(25.0))),
+                                fillColor: Colors.white,
+                                filled: true),
+                          //        onSaved: (value) {
+                          //   lastName = value;
+                          // },
+                          ),
                         )),
                       ])),
                   new Container(
@@ -124,15 +158,22 @@ class _LoginDetailState extends State<LoginDetail> {
                       padding: EdgeInsets.only(left: 40, right: 40),
                       child: Column(children: <Widget>[
                         Expanded(
-                            child: TextField(
-                          textAlignVertical: TextAlignVertical.top,
-                          decoration: InputDecoration(
-                              hintStyle: new TextStyle(color: Colors.grey[800]),
-                              border: OutlineInputBorder(
-                                  borderRadius: const BorderRadius.all(
-                                      const Radius.circular(25.0))),
-                              fillColor: Colors.white,
-                              filled: true),
+                            child: Form(
+                              // key: _formkey,
+                          child: TextFormField(
+                            textAlignVertical: TextAlignVertical.top,
+                            decoration: InputDecoration(
+                                hintStyle:
+                                    new TextStyle(color: Colors.grey[800]),
+                                border: OutlineInputBorder(
+                                    borderRadius: const BorderRadius.all(
+                                        const Radius.circular(25.0))),
+                                fillColor: Colors.white,
+                                filled: true),
+                          //        onSaved: (value) {
+                          //   phoneNum = value;
+                          // },
+                          ),
                         )),
                       ])),
                   new Container(
@@ -157,7 +198,17 @@ class _LoginDetailState extends State<LoginDetail> {
                       children: <Widget>[
                         RaisedButton(
                           padding: const EdgeInsets.all(13.0),
-                          onPressed: () => _submit(context),
+                          onPressed: ()  => _submit(context),
+                          // onPressed: () async {
+                          //   _savingData();
+                          //   final url = 'http://127.0.0.1:5000/user';
+                          //   final response = await http.post(url,
+                          //       body: json.encode({
+                          //         'name': name,
+                          //         // 'lastName': lastName,
+                          //         // 'Phone': phoneNum
+                          //       }));
+                          // },
                           color: Colors.green,
                           child: Text(
                             'SUBMIT',
@@ -176,6 +227,44 @@ class _LoginDetailState extends State<LoginDetail> {
                       ],
                     ),
                   ),
+                    //                 Container(
+                    // padding: const EdgeInsets.only(left: 40.0, right: 40.0),
+                    // child: Column(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   crossAxisAlignment: CrossAxisAlignment.stretch,
+                    //   children: <Widget>[
+                    //     RaisedButton(
+                          // padding: const EdgeInsets.all(13.0),
+                          // onPressed: ()  => _submit(context),
+                          // onPressed: () async {
+                            
+                          //   final url = 'http://127.0.0.1:5000/user';
+                          //   final response = await http.get(url);
+                          //   final decoded = json.decode(response.body) as Map<String,dynamic>;
+                          //   setState(() {
+                          //     final_response = decoded['name'];
+                          //   });
+                                
+                          // },
+                  //         color: Colors.green,
+                  //         child: Text(
+                  //           'SHOW',
+                  //           style: TextStyle(
+                  //             fontWeight: FontWeight.w800,
+                  //             color: Colors.white,
+                  //             fontSize: 15.0,
+                  //           ),
+                  //         ),
+                  //         shape: RoundedRectangleBorder(
+                  //           borderRadius: BorderRadius.all(
+                  //             Radius.circular(15.0),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  // Text(final_response, style: TextStyle(fontSize: 20),),
                   SizedBox(
                     height: 50.0,
                   ),
@@ -249,22 +338,23 @@ class RadioGroupWidget extends State {
               ],
             ),
             if (id == 1)
-             Container(
-                height: 150,
-
-                padding: EdgeInsets.only(left: 15, right: 40),
-                child: TextField(
-                  maxLines: 3,
-                  textAlignVertical: TextAlignVertical.top,
-                  decoration: InputDecoration(
-                      hintStyle: new TextStyle(color: Colors.grey[800]),
-                      hintText: 'Introduce Yourself',
-                      border: OutlineInputBorder(
-                          borderRadius: const BorderRadius.all(
-                              const Radius.circular(15.0))),
-                      fillColor: Colors.white,
-                      filled: true),
-                )),
+              Container(
+                  height: 150,
+                  padding: EdgeInsets.only(left: 15, right: 40),
+                  child: Form(
+                    child: TextFormField(
+                      maxLines: 3,
+                      textAlignVertical: TextAlignVertical.top,
+                      decoration: InputDecoration(
+                          hintStyle: new TextStyle(color: Colors.grey[800]),
+                          hintText: 'Introduce Yourself',
+                          border: OutlineInputBorder(
+                              borderRadius: const BorderRadius.all(
+                                  const Radius.circular(15.0))),
+                          fillColor: Colors.white,
+                          filled: true),
+                    ),
+                  )),
           ],
         ));
   }
